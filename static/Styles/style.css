@@ -1,0 +1,20 @@
+.header {
+	background-color: rgb(185,122,87);
+	height: 140px;
+	width: 99%;
+	padding: 10px 10px;
+	position: fixed;
+	white-space: nowrap;
+	overflow-x: auto;
+	top:0;
+}
+.main {
+	background-color:rgb(218, 186, 156);
+	height:2000px;
+	margin-top: 140px;
+	display:flex;
+}
+body {
+	margin:0;
+	background-color:rgb(218, 186, 156);
+}
