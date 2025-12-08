@@ -7,3 +7,5 @@ W templates są wszystkie pliki html, proponuję rozbić je na layout gdzie będ
 Wszystko inne (pliki py i baza itp.) chyba w ogólnym folderze
 
 Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
+
+Robię bazę danych na branchu maciek-baza-danych, zmerguję do main'a jak skończę (oczywiście możecie w międzyczasie robić inne rzeczy) -- Maciek
