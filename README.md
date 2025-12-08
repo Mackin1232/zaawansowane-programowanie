@@ -8,4 +8,4 @@ Wszystko inne (pliki py i baza itp.) chyba w ogólnym folderze
 
 Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
 
-Robię bazę danych na branchu maciek-baza-danych, zmerguję do main'a jak skończę (oczywiście możecie w międzyczasie robić inne rzeczy) -- Maciek
+Robię bazę danych na branchu maciek-baza-danych, zmerguję do main'a jak zrobię bazę na której jest sens budować resztę (oczywiście możecie w międzyczasie robić inne rzeczy) -- Maciek
