@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from views import views
 from config import Config
 from db.modele import db, User
@@ -15,9 +15,5 @@ load_data(app)
 @app.route("/")
 def index():
     return "test"
-
-@app.route("/users")
-def users():
-    return User.all_users()
 
 app.run(debug=True)

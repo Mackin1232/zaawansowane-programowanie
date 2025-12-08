@@ -14,3 +14,8 @@ class User(db.Model):
     def all_users(table):
         users = table.query.all()
         return [u.to_dict() for u in users]
+    
+    @classmethod
+    def search_user(table,user_id):
+        user = table.query.get(user_id)
+        return user.to_dict()
