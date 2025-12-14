@@ -4,6 +4,7 @@ from config import Config
 from db.modele import db, User
 from sample_data import load_data
 
+
 app = Flask(__name__)
 app.register_blueprint(views, url_prefix="/")
 

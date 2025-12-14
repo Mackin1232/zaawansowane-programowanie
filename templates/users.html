@@ -5,7 +5,7 @@
 <h2>Lista użytkowników:</h2>
 <ul>
     {% for user in users %}
-        <li>ID: {{ user.id }}, Email: {{ user.email }}</li>
+        <li>ID: {{ user.id }}, Username: {{user.username}}, Email: {{ user.email }}, Role: {{user.role}}</li>
     {% else %}
         <li>Brak użytkowników w bazie danych.</li>
     {% endfor %}

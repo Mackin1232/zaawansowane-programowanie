@@ -1,21 +1,45 @@
 from flask_sqlalchemy import SQLAlchemy
+from pydantic import BaseModel
+from typing import Optional
+
 
 db = SQLAlchemy()
 
+# ------------- USER ----------------------
+
+class newUser(BaseModel): # nie wiem czy to wgl potrzebne, może to się przyda jako schema do requestow?
+    username: str
+    password: str
+    email: str
+    role: Optional[str] = "user" # domyślna wartość, dla admina powinna byc wartosc "admin"
+
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(200), nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    role = db.Column(db.String, nullable=False)
 
     def to_dict(self):
-        return {"id": self.id, "email": self.email}
+        return {"id": self.id, "username": self.username, "password": self.password, "email": self.email, "role": self.role}
     
-    @classmethod
-    def all_users(table):
-        users = table.query.all()
-        return [u.to_dict() for u in users]
-    
-    @classmethod
-    def search_user(table,user_id):
-        user = table.query.get(user_id)
-        return user.to_dict()
+
+# -------------------- LOCATION - hotele, domki itd. ------------------
+
+class newLocation(BaseModel): 
+    country: str
+    city: str
+    airport: str
+    desc: str
+
+class Location(db.Model):
+    __tablename__="locations"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    country = db.Column(db.String, unique=True, nullable=False)
+    city = db.Column(db.String, nullable=False)
+    airport = db.Column(db.String, nullable=False) # kod IATA najbliższego lotniska (powinno się zgadzać z API)
+    desc = db.Column(db.String, nullable=False) #  opis lokacji (do wrzucenia na stronę?)
+
+    def to_dict(self):
+        return {"id": self.id, "country": self.country, "city": self.city, "airport": self.airport, "desc": self.desc}
