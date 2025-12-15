@@ -1,5 +1,5 @@
 UWAGA!!! Do pobierania lotow nie używać api AviationStack, podobno wykradają pieniądze;
-Ja zrobię na podstawie AeroDataBox (dostępne za darmo na RapidAPI)
+Na razie szukam, jakiego API użyć, na razie AeroDataBox wygląda obiecująco
 
 Progres:
   - zrobiono prostą bazę z tabelą Users
