@@ -1,5 +1,5 @@
 Używam api AirLabs - jeśli chcecie klucz to napiszcie na messengerze
-
+Sugeruję żeby dane z API pobrać raz (albo raz na jakiś czas - 1 na dzień, na 2 dni?), zapisać do bazy danych (albo jako plik .json) i żeby aplikacja pobierała dane z bazy/pliku. Wtedy zużyjemy mniej requestów
 Progres:
   - zrobiono prostą bazę z tabelą Users
   - wstawiono przykładowe dane do bazy
