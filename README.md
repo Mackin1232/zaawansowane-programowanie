@@ -1,5 +1,4 @@
-UWAGA!!! Do pobierania lotow nie używać api AviationStack, podobno wykradają pieniądze;
-Na razie szukam, jakiego API użyć, na razie ok wyglądają AeroDataBox, FlightLabs, AirLabs, FlightAPI.io, Aviyair
+Używam api AirLabs - jeśli chcecie klucz to napiszcie na messengerze
 
 Progres:
   - zrobiono prostą bazę z tabelą Users
