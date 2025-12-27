@@ -6,6 +6,6 @@ Progres:
   - po wejściu na 127.0.0.1:5000/users zwracani są wszyscy userzy
   - po wejściu na 127.0.0.1:5000/users/1 zwracany jest user o id = 1 (działa też dla innych id)
   - dodano klasę location, uporządkowano kod
-  - pobrano dane lotów z api
+  - pobrano dane lotów z api (są w folderze api_data jako pliki .json)
 
 TODO: uzupełnić bazę danych o loty, lotniska, lokacje
