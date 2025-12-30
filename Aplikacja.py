@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from views import views
 from config import Config
 from db.modele import db, User
-from sample_data import load_data
+from laduj_dane import load_data
 
 
 app = Flask(__name__)

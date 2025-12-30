@@ -63,27 +63,46 @@ class Location(db.Model):
 # ---------------------- BOOKING - rezerwacje --------------------
 
 class newBooking(BaseModel):
-    bookingId: str
+    bookingId: int
     userId: str
-    flightId: str
+    flightIata: str
     locationId: str
     departureDate: str
     returnDate: str
 
 class Booking(db.Model): # TODO: dodać relacje z innymi tabelami
     __tablename__="bookings"
-    bookingId = db.Column(db.String, primary_key=True, autoincrement=True)
+    bookingId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userId = db.Column(db.String, nullable=False)
-    flightId = db.Column(db.String, nullable=False)
+    flightIata = db.Column(db.String, nullable=False)
     locationId = db.Column(db.String, nullable=False)
     departureDate = db.Column(db.String, nullable=False)
     returnDate = db.Column(db.String, nullable=False)
 
     def to_dict(self):
-        return {"bookingId": self.bookingId, "userId": self.userId, "flightId": self.flightId, "locationId": self.locationId, "departureDate": self.departureDate, "returnDate": self.returnDate}
+        return {"bookingId": self.bookingId, "userId": self.userId, "flightIata": self.flightIata, "locationId": self.locationId, "departureDate": self.departureDate, "returnDate": self.returnDate}
 
 
 # ------------------------- FLIGHT - loty (z API, można zasymulować dane [ np. dane z API powielić wiele razy dla różnych dat ] ) ---------------
 
-# TODO: zrobic tabele na podstawie API (AirLabs?)
+class newFlight(BaseModel):
+    #flightIata: str
+    departureIata: str
+    departureDate: str
+    arrivalIata: str
+    arrivalDate: str
+
+class Flight(db.Model):
+    __tablename__="flights"
+    flightId = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    #flightIata = db.Column(db.String, nullable=False)
+    departureIata = db.Column(db.String, nullable=False)
+    departureDate = db.Column(db.String, nullable=False)
+    arrivalIata = db.Column(db.String, nullable=False)
+    arrivalDate = db.Column(db.String, nullable=False)
+
+    def to_dict(self):
+        return {"flightId": self.flightId, 
+                #"flightIata": self.flightIata, 
+                "departureIata": self.departureIata, "departureDate": self.departureDate, "arrivalIata": self.arrivalIata, "arrivalDate": self.arrivalDate}
     
