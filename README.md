@@ -1,13 +1,11 @@
-Używam api AirLabs - jeśli chcecie klucz to napiszcie na messengerze
+Aby odpalić strone należy wykonać flask --app Aplikacja.py run
 
-Sugeruję żeby dane z API pobrać raz (albo raz na jakiś czas - 1 na dzień, na 2 dni?), zapisać do bazy danych (albo jako plik .json) i żeby aplikacja pobierała dane z bazy/pliku. Wtedy zużyjemy mniej requestów
+W static/Styles będą style css strony
 
-Progres:
-  - zrobiono prostą bazę z tabelą Users
-  - wstawiono przykładowe dane do bazy
-  - po wejściu na 127.0.0.1:5000/users zwracani są wszyscy userzy
-  - po wejściu na 127.0.0.1:5000/users/1 zwracany jest user o id = 1 (działa też dla innych id)
-  - dodano klasę location, uporządkowano kod
-  - pobrano dane lotów z api (są w folderze api_data jako pliki .json)
+W templates są wszystkie pliki html, proponuję rozbić je na layout gdzie będą elementy znajdujące się na każdej podstronie (tło itp.), natomiast w poszczególnych plikach będą elementy każdej podstrony tak jak jest to w przykładowym indexie
 
-TODO: uzupełnić bazę danych o loty, lotniska, lokacje
+Wszystko inne (pliki py i baza itp.) chyba w ogólnym folderze
+
+Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
+
+[30.12.2025] Zrobiłem pierwszą wersję bazy danych, myślę że można już coś z tym kombinować. W razię wątpliwości śmiało piszcie pytania -- Maciek
