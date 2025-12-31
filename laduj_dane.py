@@ -1,4 +1,4 @@
-from db.modele import db, User, newUser, Airport, newAirport, Flight, newFlight, Booking, newBooking
+from db.modele import db, User, newUser, Airport, newAirport, Location, newLocation, Flight, newFlight, Booking, newBooking
 from pathlib import Path
 import bcrypt
 import csv
@@ -14,6 +14,12 @@ def add_airports(data: list[newAirport]):
     for air in data:
         airport = Airport(name=air.name,iata=air.iata)
         db.session.add(airport)
+    db.session.commit()
+
+def add_locations(data: list[newLocation]):
+    for loc in data:
+        location = Location(name=loc.name,country=loc.country,city=loc.city,airport=loc.airport,desc=loc.desc)
+        db.session.add(location)
     db.session.commit()
 
 def add_flights(data: list[newFlight]):
@@ -64,6 +70,15 @@ def load_data(app):
                 for airport in reader:
                     lotniska_lista.append(newAirport(**airport))
             add_airports(lotniska_lista)
+        # lokacje z locations.csv
+        if Location.query.count() == 0:
+            lokacje_lista = []
+            with open("./db/base_data/locations.csv","r", ) as file:
+                reader = csv.DictReader(file, delimiter=";")
+
+                for location in reader:
+                    lokacje_lista.append(newLocation(**location))
+            add_locations(lokacje_lista)
 
         # loty z responsow od api (db/base_data/api_data)
         if Flight.query.count() == 0:
@@ -81,4 +96,14 @@ def load_data(app):
                             "arrivalDate": lot['arr_time']}
                         loty_lista.append(newFlight(**l))
             add_flights(data=loty_lista)
+    
+            for lokacja in lokacje_lista: # do debugowania, można potem usunąć
+                dest = lokacja.airport
+                flight = Flight.query.filter_by(arrivalIata=dest).first()
+                if flight is None:
+                    print(f"Lokacja {lokacja.name} (lotnisko {lokacja.airport}) nie ma odpowiadającego lotu w bazie!")
+
+    
+    
     print("Załadowano dane")
+    
