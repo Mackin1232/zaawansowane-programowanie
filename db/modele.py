@@ -43,6 +43,7 @@ class Airport(db.Model):
 # -------------------- LOCATION - hotele, domki itd. ------------------
 
 class newLocation(BaseModel): 
+    name: str
     country: str
     city: str
     airport: str
@@ -51,13 +52,14 @@ class newLocation(BaseModel):
 class Location(db.Model):
     __tablename__="locations"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    country = db.Column(db.String, unique=True, nullable=False)
+    name = db.Column(db.String, unique=True, nullable=False)
+    country = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     airport = db.Column(db.String, nullable=False) # kod IATA najbliższego lotniska (powinno się zgadzać z API)
     desc = db.Column(db.String, nullable=False) #  opis lokacji (do wrzucenia na stronę?)
 
     def to_dict(self):
-        return {"id": self.id, "country": self.country, "city": self.city, "airport": self.airport, "desc": self.desc}
+        return {"id": self.id, "name": self.name, "country": self.country, "city": self.city, "airport": self.airport, "desc": self.desc}
 
 
 # ---------------------- BOOKING - rezerwacje --------------------
