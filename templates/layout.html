@@ -1,15 +1,111 @@
-<!DOCTYPE HTML>
-<html lang=”pl”>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-<meta charset="utf-8">
-<title>Projekt zawansowane programowanie</title>
-<link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/style.css') }}">
 </head>
-<body >
-<div class="header">
-<h1>Layout strony, który będzie na każdej stronie</h1>
-</div>
-{% block main%}
-{% endblock%}
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Travel Logo">
+            <span>Travel</span>
+        </div>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav">
+            <a href="{{ url_for('views.home') }}">Strona główna</a>
+            <a href="/kraje">Kraje</a>
+
+            {% if user %}
+                {% if user.role == 'admin' %}
+                    <a href="/admin" class="nav-link-admin">
+                        {{ user.username }}
+                    </a>
+
+                {% else %}
+                    <a href="{{ url_for('views.my_reservations') }}">
+                        {{ user.username }}
+                    </a>
+                {% endif %}
+
+                <a href="/logout">Wyloguj</a>
+            {% else %}
+                <a href="/login" class="login">Logowanie</a>
+                <a href="/register" class="register">Rejestracja</a>
+            {% endif %}
+        </nav>
+
+        <div class="mobile-menu">
+            <a href="{{ url_for('views.home') }}">Strona główna</a>
+            <a href="/kraje">Kraje</a>
+            {% if user %}
+
+                {% if user.role == 'admin' %}
+                    <a href="/admin" class="nav-link-admin"> {{ user.username }}</a>
+                {% else %}
+                    <a href="{{ url_for('views.my_reservations') }}">{{ user.username }}</a>
+                {% endif %}
+
+                <a href="/logout">Wyloguj</a>
+            {% else %}
+                <a href="/login" class="login">Logowanie</a>
+                <a href="/register" class="register">Rejestracja</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="alert-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+
+    {% block main %}
+    {% endblock %}
+
+
+    <footer class="footer">
+        <div class="footer-column">
+            <div class="social-media">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook"></a>
+                    <a href="https://x.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/2267px-X_logo_2023.svg.png" alt="X"></a>
+                    <a href="https://instagram.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h4>Przydatne linki</h4>
+            <ul>
+                <li><a href="{{ url_for('views.home') }}">Strona główna</a></li>
+                <li><a href="{{ url_for('views.terms') }}">Regulamin</a></li>
+                <li><a href="{{ url_for('views.kraje') }}">Kraje</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Kontakt</h4>
+            <ul>
+                <li><a>+48 123 456 789</a></li>
+                <li><a>Travel@mail.com</a></li>
+                <li><a>Wrocław, Ul. Leśna 11/3B</a></li>
+            </ul>
+        </div>
+    </footer>
+
 </body>
 </html>

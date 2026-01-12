@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}Moje Rezerwacje{% endblock %}
+
+{% block main %}
+<div class="container reservations-container">
+
+    <div class="reservations-hero">
+        <h1 class="reservations-title">Moje Rezerwacje</h1>
+        <p class="reservations-subtitle">Witaj, {{ user.username }}! Oto Twoje zaplanowane podróże.</p>
+    </div>
+
+    <div class="reservations-content">
+        {% if bookings %}
+            <table class="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Nr rezerwacji</th>
+                        <th>Data wylotu</th>
+                        <th>Data przylotu</th>
+                        <th>Trasa</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking, flight in bookings %}
+                    <tr>
+                        <td class="cell-id">
+                            #{{ booking.bookingId }}
+                        </td>
+
+                        <td class="cell-date">
+                            {{ flight.departureDate }}
+                        </td>
+
+                        <td class="cell-date">
+                            {{ flight.arrivalDate }}
+                        </td>
+
+                        <td>
+                            <span class="route-iata">{{ flight.departureIata }}</span>
+                            <span class="route-arrow">&rarr;</span>
+                            <span class="route-iata">{{ flight.arrivalIata }}</span>
+                        </td>
+
+                        <td>
+                            <span class="status-badge">
+                                Zarezerwowany
+                            </span>
+                        </td>
+
+                        <td style="text-align: center;">
+                            <a href="/rezerwacje/delete/{{ booking.bookingId }}"
+                               class="btn-cancel">
+                                Anuluj rezerwację
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <h3 class="empty-title">Brak rezerwacji ✈️</h3>
+                <p class="empty-text">Nie masz jeszcze żadnych zaplanowanych lotów.</p>
+                <a href="/kraje" class="btn-primary">Znajdź lot</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

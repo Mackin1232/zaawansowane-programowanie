@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}Admin - Użytkownicy{% endblock %}
+
+{% block main %}
+<div class="container admin-container">
+
+    <div class="admin-header">
+        <h2 class="admin-title">Zarządzanie Użytkownikami</h2>
+        <a href="/admin" class="btn-admin-back">
+            &larr; Panel
+        </a>
+    </div>
+
+    <div class="admin-table-wrapper">
+        <div class="admin-panel">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-left">Login / Nazwa</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-center">Rola</th>
+                        <th class="text-center">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in users %}
+                    <tr>
+                        <td class="text-center">{{ u.id }}</td>
+
+                        <td class="text-left">
+                            <strong>{{ u.username }}</strong>
+                        </td>
+
+                        <td class="text-left">{{ u.email }}</td>
+
+                        <td class="text-center">
+                            {% if u.role == 'admin' %}
+                                <span class="role-badge badge-admin">ADMIN</span>
+                            {% else %}
+                                <span class="role-badge badge-user">USER</span>
+                            {% endif %}
+                        </td>
+
+                        <td class="text-center">
+                            {% if u.role != 'admin' %}
+                                <a href="/admin/users/delete/{{ u.id }}" class="btn-delete">
+                                   Usuń
+                                </a>
+                            {% else %}
+                                <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

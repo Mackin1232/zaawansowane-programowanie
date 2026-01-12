@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}Admin - Lotniska{% endblock %}
+
+{% block main %}
+<div class="container admin-container">
+
+    <div class="admin-header">
+        <h2 class="admin-title">Zarządzanie Lotniskami</h2>
+        <a href="/admin" class="btn-admin-back">
+            &larr; Panel
+        </a>
+    </div>
+
+    <div class="admin-table-wrapper">
+
+        <div class="admin-panel mb-40">
+            <h3 class="admin-section-title">Dodaj nowe lotnisko</h3>
+
+            <form method="POST" action="/admin/airports" class="admin-form-grid">
+                <input type="text" name="name" placeholder="Nazwa lotniska (np. Port Lotniczy Chopina)" required
+                       class="admin-input">
+
+                <input type="text" name="iata" placeholder="Kod IATA (np. WAW)" required maxlength="3"
+                       class="admin-input input-uppercase">
+
+                <button type="submit" class="btn-admin-submit span-full">
+                    Dodaj Lotnisko
+                </button>
+            </form>
+        </div>
+
+        <div class="admin-panel">
+            <h3 class="admin-section-title">Baza lotnisk</h3>
+
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <th class="text-left">Kod IATA</th>
+                        <th class="text-left">Nazwa</th>
+                        <th class="text-center">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for airport in airports %}
+                    <tr>
+                        <td class="text-left">{{ airport.id }}</td>
+
+                        <td class="text-left font-bold">{{ airport.iata }}</td>
+
+                        <td class="text-left">{{ airport.name }}</td>
+
+                        <td class="text-center">
+                            <a href="/admin/airports/delete/{{ airport.id }}"
+                               class="btn-delete">
+                               Usuń
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

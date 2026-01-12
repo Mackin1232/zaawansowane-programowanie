@@ -1,6 +1,116 @@
-{%extends "layout.html" %}
+{% extends "layout.html" %}
+
+{% block title %}Strona Główna - Loty{% endblock %}
+
 {% block main %}
-<br>
-<br><br><br><br><br><br><br>
-    <h1>Rzeczy specyficzne dla danej podstrony</h1>
+
+    <section class="search-section">
+        <div class="overlay"></div>
+        <h1>Znajdź swoje połączenie</h1>
+
+        <form action="/search" method="get" class="search-form">
+
+            <div class="form-group">
+                <label for="origin">
+                    <span class="search-label-text">Lotnisko wylotu</span>
+                    <select id="origin" name="origin_iata" required>
+                        <option value="" disabled selected>Wybierz lotnisko</option>
+                        {% for airport in origins %}
+                            <option value="{{ airport.iata }}">{{ airport.name }} ({{ airport.iata }})</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">
+                    <span class="search-label-text">Cel podróży</span>
+                    <select id="destination" name="destination_id" required>
+                        <option value="" disabled selected>Wybierz cel</option>
+                        {% for loc in destinations %}
+                            <option value="{{ loc.id }}">{{ loc.city }} ({{ loc.country }})</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="departure">
+                    <span class="search-label-text">Data wylotu</span>
+                    <select id="departure" name="date" required>
+                        <option value="" disabled selected>Wybierz datę</option>
+                        {% for date in dates %}
+                            <option value="{{ date }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <button type="submit">Szukaj Lotu</button>
+        </form>
+    </section>
+
+    <section class="why-us">
+        <h2>Dlaczego My?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3125/3125713.png" alt="Flight Icon" class="feature-icon-img">
+                </div>
+                <h3>Najlepsze Połączenia</h3>
+                <p>Zapewniamy szeroki wybór połączeń lotniczych dopasowanych do Twojego kalendarza. Latamy z największych polskich lotnisk do najciekawszych miast w Europie.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4233/4233830.png" alt="Service Icon" class="feature-icon-img">
+                </div>
+                <h3>Wygodna Rezerwacja</h3>
+                <p>Nasz system pozwala w kilka kliknięć znaleźć idealny lot. Bez ukrytych opłat, bez skomplikowanych formularzy – czysta przyjemność planowania podróży.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/826/826070.png" alt="Experience Icon" class="feature-icon-img">
+                </div>
+                <h3>Bezpieczna Podróż</h3>
+                <p>Współpracujemy tylko ze sprawdzonymi przewoźnikami i monitorujemy status każdego lotu w czasie rzeczywistym, abyś mógł podróżować bez stresu.</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="recommended-countries">
+            <h2>Popularne kierunki</h2>
+            <div class="cards-container">
+                {% for country in recommended %}
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300x200?text={{ country.city }}" alt="{{ country.name }}">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>{{ country.city }}</h3>
+                                <span class="card-country-name">{{ country.country }}</span>
+                            </div>
+
+                            <ul class="card-details-list">
+                                <li>
+                                    <strong>Lotnisko:</strong> {{ country.airport }}
+                                </li>
+                            </ul>
+
+                            <a href="/kierunek/{{ country.id }}/loty" class="card-link-wrapper">
+                                <button type="button" class="btn-card-action">
+                                    Pokaż wszystkie loty
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if not recommended %}
+                    <p class="empty-results">Brak lotów w bazie.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
 {% endblock %}

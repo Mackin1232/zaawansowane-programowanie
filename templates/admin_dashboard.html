@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Panel Administratora{% endblock %}
+
+{% block main %}
+<div class="container admin-container">
+
+    <div class="admin-hero">
+        <h1 class="admin-hero-title">Panel Administratora</h1>
+        <p class="admin-hero-subtitle">Zarządzaj systemem Travel</p>
+    </div>
+
+    <div class="admin-dashboard-grid">
+
+        <a href="/admin/users" class="admin-card-link">
+            <div class="admin-card">
+                <h3>👥 Użytkownicy</h3>
+                <p>Zarządzaj klientami</p>
+            </div>
+        </a>
+
+        <a href="/admin/locations" class="admin-card-link">
+            <div class="admin-card">
+                <h3>🌍 Lokalizacje</h3>
+                <p>Dodaj/Usuń kraje</p>
+            </div>
+        </a>
+
+        <a href="/admin/airports" class="admin-card-link">
+            <div class="admin-card">
+                <h3>✈️ Lotniska</h3>
+                <p>Baza lotnisk</p>
+            </div>
+        </a>
+
+    </div>
+</div>
+{% endblock %}
