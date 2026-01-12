@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}Wszystkie Kierunki{% endblock %}
+
+{% block main %}
+
+    <section class="search-section">
+        <div class="overlay"></div>
+        <h1>Znajdź swoje połączenie</h1>
+
+        <form action="/search" method="get" class="search-form">
+
+            <div class="form-group">
+                <label for="origin">
+                    <span class="search-label-text">Lotnisko wylotu</span>
+                    <select id="origin" name="origin_iata" required>
+                        <option value="" disabled selected>Wybierz lotnisko</option>
+                        {% for airport in origins %}
+                            <option value="{{ airport.iata }}">{{ airport.name }} ({{ airport.iata }})</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">
+                    <span class="search-label-text">Cel podróży</span>
+                    <select id="destination" name="destination_id" required>
+                        <option value="" disabled selected>Wybierz cel</option>
+                        {% for loc in destinations %}
+                            <option value="{{ loc.id }}">{{ loc.city }} ({{ loc.country }})</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="departure">
+                    <span class="search-label-text">Data wylotu</span>
+                    <select id="departure" name="date" required>
+                        <option value="" disabled selected>Wybierz datę</option>
+                        {% for date in dates %}
+                            <option value="{{ date }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <button type="submit">Szukaj Lotu</button>
+        </form>
+    </section>
+
+    <main>
+        <section class="all-countries">
+            <h2 class="section-title">Dostępne miejsca docelowe</h2>
+
+            <div class="cards-container">
+                {% for country in locations %}
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300x200?text={{ country.city }}" alt="{{ country.name }}">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>{{ country.city }}</h3>
+                                <span class="card-country-name">{{ country.country }}</span>
+                            </div>
+
+                            <ul class="card-details-list">
+                                <li>
+                                    <strong>Lotnisko:</strong> {{ country.airport }}
+                                </li>
+                            </ul>
+
+                            <a href="/kierunek/{{ country.id }}/loty" class="card-link-wrapper">
+                                <button type="button" class="btn-card-action">
+                                    Pokaż wszystkie loty
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if not locations %}
+                    <p class="empty-results">Brak dostępnych kierunków.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

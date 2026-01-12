@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}Loty do {{ location.city }}{% endblock %}
+
+{% block main %}
+<div class="container flights-container">
+
+    <div class="flights-header">
+        <div>
+            <h1 class="flights-title">Kierunek: <span class="highlight-text">{{ location.city }}</span></h1>
+            <p class="flights-subtitle">{{ location.country }} (Kod lotniska: {{ location.airport }})</p>
+        </div>
+
+        <a href="/" class="btn-back">
+            &larr; Strona główna
+        </a>
+    </div>
+
+    <div class="flights-content">
+        {% if flights %}
+            <table class="flights-table">
+                <thead>
+                    <tr>
+                        <th>Trasa</th>
+                        <th class="cell-center">Czas wylotu</th>
+                        <th class="cell-center">Czas przylotu</th>
+                        <th style="text-align: right;">Cena</th>
+                        <th class="col-action">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for flight in flights %}
+                    <tr>
+                        <td>
+                            <div class="route-wrapper">
+                                <span style="font-weight: bold;">{{ flight.departureIata }}</span>
+                                <span style="color:gray; padding: 0 5px;">&rarr;</span>
+                                <span style="font-weight: bold;">{{ flight.arrivalIata }}</span>
+                            </div>
+                        </td>
+
+                        <td class="cell-center cell-time">
+                            {{ flight.departureDate }}
+                        </td>
+
+                        <td class="cell-center cell-time">
+                            {{ flight.arrivalDate }}
+                        </td>
+
+                        <td class="cell-price">
+                            {{ flight.price }} PLN
+                        </td>
+
+                        <td class="col-action">
+                            {% if user %}
+                                <form action="/reserve/{{ flight.flightId }}" method="POST" class="reserve-form">
+                                    <button type="submit"
+                                            class="btn-reserve"
+                                            onclick="return confirm('Czy na pewno chcesz zarezerwować ten lot do {{ location.city }}?')">
+                                        Zarezerwuj
+                                    </button>
+                                </form>
+                            {% else %}
+                                <a href="/login" class="btn-login-alert">
+                                    Zaloguj się aby zarezerwować
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <h3 class="empty-title">Brak zaplanowanych lotów ✈️</h3>
+                <p class="empty-text">Niestety, aktualnie nie mamy połączeń do tego miasta.</p>
+                <a href="/" class="link-primary">Wybierz inny kierunek</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

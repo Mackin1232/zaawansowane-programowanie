@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}Admin - Lokalizacje{% endblock %}
+
+{% block main %}
+<div class="container admin-container">
+
+    <div class="admin-header">
+        <h2 class="admin-title">Zarządzanie Lokalizacjami</h2>
+        <a href="/admin" class="btn-admin-back">
+            &larr; Panel
+        </a>
+    </div>
+
+    <div class="admin-table-wrapper">
+
+        <div class="admin-panel mb-40">
+            <h3 class="admin-section-title">Dodaj nową lokalizację</h3>
+
+            <form method="POST" action="/admin/locations" class="admin-form-grid">
+                <input type="text" name="city" placeholder="Miasto" required class="admin-input">
+                <input type="text" name="country" placeholder="Kraj" required class="admin-input">
+                <input type="text" name="name" placeholder="Nazwa miejsca (np. Hotel...)" required class="admin-input">
+                <input type="text" name="airport" placeholder="Kod IATA lotniska (np. WRO)" required class="admin-input">
+
+                <textarea name="desc" placeholder="Opis" rows="3" class="admin-input span-full"></textarea>
+
+                <button type="submit" class="btn-admin-submit span-full">
+                    Dodaj Lokalizację
+                </button>
+            </form>
+        </div>
+
+        <div class="admin-panel">
+            <h3 class="admin-section-title">Istniejące lokalizacje</h3>
+
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th class="text-left">Miasto</th>
+                        <th class="text-left">Kraj</th>
+                        <th class="text-center">Lotnisko</th>
+                        <th class="text-center">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loc in locations %}
+                    <tr>
+                        <td class="text-left"><strong>{{ loc.city }}</strong></td>
+                        <td class="text-left">{{ loc.country }}</td>
+                        <td class="text-center">{{ loc.airport }}</td>
+                        <td class="text-center">
+                            <a href="/admin/locations/delete/{{ loc.id }}"
+                               class="btn-delete"
+                               onclick="return confirm('Czy na pewno chcesz usunąć {{ loc.city }}?')">
+                               Usuń
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

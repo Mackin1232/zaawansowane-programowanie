@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Logowanie - Travel{% endblock %}
+
+{% block main %}
+<div class="main-content auth-wrapper">
+
+    <div class="login-container auth-card">
+
+        <h2 class="auth-title">Logowanie</h2>
+
+        <form action="/login" method="POST" class="login-form">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required class="form-input">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <input type="password" name="password" placeholder="Hasło" required class="form-input">
+            </div>
+
+            <button type="submit" name="login" class="btn-submit">
+                Zaloguj się
+            </button>
+        </form>
+
+        <p class="signup-prompt auth-footer">
+            Nie posiadasz konta? <a href="/register" class="auth-link">Rejestracja</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
