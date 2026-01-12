@@ -55,8 +55,7 @@
                             {% if user %}
                                 <form action="/reserve/{{ flight.flightId }}" method="POST" class="reserve-form">
                                     <button type="submit"
-                                            class="btn-reserve"
-                                            onclick="return confirm('Czy na pewno chcesz zarezerwować ten lot do {{ location.city }}?')">
+                                            class="btn-reserve">
                                         Zarezerwuj
                                     </button>
                                 </form>

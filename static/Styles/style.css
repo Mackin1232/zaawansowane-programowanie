@@ -1,4 +1,4 @@
-body {
+﻿body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: url('https://wallpapers.com/images/hd/ultrawide-white-sand-beach-b6wif1jbyowa0ta9.jpg') no-repeat center center fixed;
@@ -1097,15 +1097,6 @@ select {
     width: 100%;
 }
 
-.select-container::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #aaa;
-}
 
 select:focus {
     outline: none;
@@ -1256,10 +1247,10 @@ body {
     }
 }
 
-/* Styles for reservations page */
+
 .reservations-container {
     max-width: 1000px;
-    margin: 100px auto;
+    margin: 200px auto;
     padding: 20px;
 }
 
@@ -1397,7 +1388,7 @@ body {
         width: auto;
     }
 }
-/* Style specyficzne dla regulaminu */
+
 .terms-section {
     max-width: 800px;
     margin: 40px auto;
@@ -1412,7 +1403,7 @@ body {
     color: #333;
 }
 .terms-content h2 {
-    color: #007bff; /* Kolor pasujący do motywu */
+    color: #007bff; 
     font-size: 1.2rem;
     margin-top: 20px;
     border-bottom: 1px solid #eee;
@@ -1425,7 +1416,7 @@ body {
     text-align: justify;
 }
 
-/* Styles for register/login forms */
+
 .main-content {
     display: flex;
     justify-content: center;
@@ -1491,7 +1482,7 @@ body {
     text-decoration: underline;
 }
 
-/* Accessibility helper: visually hidden but available for screen readers */
+
 .sr-only {
     position: absolute !important;
     width: 1px !important;
@@ -1503,9 +1494,7 @@ body {
     white-space: nowrap !important;
     border: 0 !important;
 }
-/* =========================================
-   TABELA REZERWACJI
-   ========================================= */
+
 
 .reservations-table {
     width: 100%;
@@ -1531,10 +1520,10 @@ body {
 }
 
 .reservations-table tbody tr:hover {
-    background-color: #f9f9f9; /* Delikatny efekt po najechaniu myszką */
+    background-color: #f9f9f9; 
 }
 
-/* --- Style komórek --- */
+
 
 .cell-id {
     font-weight: bold;
@@ -1555,7 +1544,7 @@ body {
     padding: 0 5px;
 }
 
-/* --- Badge Statusu (zielona pastylka) --- */
+
 .status-badge {
     background-color: #28a745;
     color: white;
@@ -1567,9 +1556,7 @@ body {
     white-space: nowrap;
 }
 
-/* =========================================
-   STAN PUSTY (Brak rezerwacji)
-   ========================================= */
+
 .empty-state {
     text-align: center;
     padding: 40px;
@@ -1602,9 +1589,7 @@ body {
     background-color: #0056b3;
 }
 
-/* =========================================
-   STRONA LOTÓW (loty.html)
-   ========================================= */
+
 
 .flights-container {
     max-width: 1000px;
@@ -1612,7 +1597,7 @@ body {
     padding: 20px;
 }
 
-/* --- Nagłówek Kierunku --- */
+
 .flights-header {
     background-color: #343a40;
     color: white;
@@ -1642,7 +1627,7 @@ body {
     font-size: 0.9em;
 }
 
-/* --- Przycisk "Wróć" --- */
+
 .btn-back {
     background-color: #495057;
     color: white;
@@ -1657,7 +1642,7 @@ body {
     background-color: #6c757d;
 }
 
-/* --- Kontener Tabeli --- */
+
 .flights-content {
     background: #f4f4f4;
     padding: 20px;
@@ -1665,7 +1650,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* --- Tabela Lotów --- */
+
 .flights-table {
     width: 100%;
     border-collapse: collapse;
@@ -1687,7 +1672,7 @@ body {
     background: white;
 }
 
-/* --- Elementy w tabeli --- */
+
 .route-wrapper {
     font-size: 1.1em;
 }
@@ -1710,32 +1695,15 @@ body {
 
 .col-action {
     text-align: center;
-    min-width: 220px; /* Ważne dla długiego napisu */
+    min-width: 220px; 
 }
 
-/* --- Przyciski Akcji (Rezerwuj / Zaloguj) --- */
+
 
 .reserve-form {
     display: block;
     width: 100%;
     margin: 0;
-}
-
-.btn-reserve {
-    width: 100%;
-    white-space: nowrap;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-reserve:hover {
-    background-color: #0056b3;
 }
 
 .btn-login-alert {
@@ -1757,7 +1725,7 @@ body {
     background-color: #5a6268;
 }
 
-/* --- Stan Pusty (link do powrotu) --- */
+
 .link-primary {
     color: #007bff;
     font-weight: bold;
@@ -1765,11 +1733,9 @@ body {
     display: inline-block;
 }
 
-/* =========================================
-   STRONY LOGOWANIA I REJESTRACJI (AUTH)
-   ========================================= */
 
-/* Główny kontener centrujący formularz na środku ekranu */
+
+
 .auth-wrapper {
     padding: 50px 0;
     display: flex;
@@ -1778,7 +1744,7 @@ body {
     min-height: 80vh;
 }
 
-/* Karta z formularzem (białe tło, cień) */
+
 .auth-card {
     background: white;
     padding: 40px;
@@ -1794,19 +1760,19 @@ body {
     color: #333;
 }
 
-/* --- Elementy Formularza --- */
+
 
 .form-group {
     margin-bottom: 15px;
 }
 
-/* Klasa dla inputów (text, password, email) */
+
 .form-input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box; /* Ważne: zapobiega wychodzeniu inputa poza kontener */
+    box-sizing: border-box; 
     transition: border-color 0.3s;
 }
 
@@ -1815,7 +1781,7 @@ body {
     outline: none;
 }
 
-/* Przycisk logowania */
+
 .btn-submit {
     width: 100%;
     padding: 10px;
@@ -1832,7 +1798,7 @@ body {
     background-color: #0056b3;
 }
 
-/* Link pod formularzem */
+
 .auth-footer {
     margin-top: 20px;
     font-size: 0.9em;
@@ -1850,9 +1816,7 @@ body {
     text-decoration: underline;
 }
 
-/* =========================================
-   ALERTY I KOMUNIKATY (Flash Messages)
-   ========================================= */
+
 
 .alert-container {
     max-width: 1000px;
@@ -1880,28 +1844,24 @@ body {
     border: 1px solid #c3e6cb;
 }
 
-/* Domyślny styl dla wiadomości info/message (opcjonalnie) */
+
 .alert-info, .alert-message {
     background-color: #cce5ff;
     color: #004085;
     border: 1px solid #b8daff;
 }
 
-/* =========================================
-   ELEMENTY NAWIGACJI (Specyficzne)
-   ========================================= */
 
-/* Link administratora (wyróżniony kolor) */
+
+
 .nav-link-admin {
     font-weight: bold;
-    color: #ffc107 !important; /* !important wymusza kolor nawet jeśli link ma inne style */
+    color: #ffc107 !important; 
 }
 
-/* =========================================
-   STRONA KRAJE (kraje.html)
-   ========================================= */
 
-/* --- Sekcja Wyszukiwania (detale etykiet) --- */
+
+
 .search-label-text {
     display: block;
     font-size: 0.8em;
@@ -1909,7 +1869,7 @@ body {
     color: #333;
 }
 
-/* --- Sekcja Główna --- */
+
 .section-title {
     text-align: center;
     margin-top: 40px;
@@ -1917,7 +1877,7 @@ body {
     color: #333;
 }
 
-/* --- Karty Krajów (Detale wewnątrz karty) --- */
+
 
 .card-country-name {
     font-weight: bold;
@@ -1930,10 +1890,10 @@ body {
     margin: 15px 0;
 }
 
-/* Przycisk w karcie */
+
 .card-link-wrapper {
     text-decoration: none;
-    display: block; /* Ważne dla linku otaczającego przycisk */
+    display: block; 
 }
 
 .btn-card-action {
@@ -1952,7 +1912,7 @@ body {
     background-color: #0056b3;
 }
 
-/* Komunikat o braku wyników */
+
 .empty-results {
     text-align: center;
     width: 100%;
@@ -1960,19 +1920,17 @@ body {
     color: #666;
 }
 
-/* =========================================
-   STRONA GŁÓWNA (index.html)
-   ========================================= */
 
-/* --- Sekcja "Dlaczego My?" --- */
+
+
 .feature-icon-img {
     width: 64px;
     height: auto;
     display: block;
-    margin: 0 auto; /* Centrowanie wewnątrz diva .icon */
+    margin: 0 auto; 
 }
 
-/* --- Elementy wspólne (jeśli nie dodałeś ich przy kraje.html) --- */
+
 
 .search-label-text {
     display: block;
@@ -2020,17 +1978,15 @@ body {
     color: #666;
 }
 
-/* =========================================
-   PANEL ADMINISTRATORA (Wspólne style)
-   ========================================= */
+
 
 .admin-container {
     max-width: 1000px;
-    margin: 200px auto; /* Zmniejszyłem margines z 200px na 100px dla lepszego wyglądu */
+    margin: 200px auto; 
     padding: 0;
 }
 
-/* --- Nagłówek Panelu --- */
+
 .admin-header {
     background-color: #343a40;
     color: white;
@@ -2062,7 +2018,7 @@ body {
     background-color: #6c757d;
 }
 
-/* --- Tabela Admina --- */
+
 .admin-table-wrapper {
     padding: 0 20px;
 }
@@ -2094,11 +2050,11 @@ body {
     background: white;
 }
 
-/* Pomocnicze klasy do wyrównania tekstu */
+
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 
-/* --- Badge Roli (Admin/User) --- */
+
 .role-badge {
     padding: 3px 8px;
     border-radius: 4px;
@@ -2109,7 +2065,7 @@ body {
 .badge-admin { background-color: #dc3545; }
 .badge-user { background-color: #28a745; }
 
-/* --- Przycisk Usuwania --- */
+
 .btn-delete {
     color: #dc3545;
     text-decoration: none;
@@ -2129,11 +2085,9 @@ body {
 .text-muted {
     color: #999;
 }
-/* =========================================
-   PANEL ADMINISTRATORA - FORMULARZE
-   ========================================= */
 
-/* Tytuł sekcji (np. "Dodaj nową lokalizację") */
+
+
 .admin-section-title {
     margin-top: 0;
     border-bottom: 1px solid #ccc;
@@ -2142,20 +2096,20 @@ body {
     color: #333;
 }
 
-/* Siatka formularza (Grid) */
+
 .admin-form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dwie kolumny */
+    grid-template-columns: 1fr 1fr; 
     gap: 15px;
 }
 
-/* Pola tekstowe w panelu admina */
+
 .admin-input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
-    box-sizing: border-box; /* Ważne, żeby padding nie rozpychał elementu */
+    box-sizing: border-box; 
 }
 
 .admin-input:focus {
@@ -2163,12 +2117,12 @@ body {
     outline: none;
 }
 
-/* Elementy zajmujące całą szerokość (np. textarea, przycisk) */
+
 .span-full {
     grid-column: span 2;
 }
 
-/* Przycisk dodawania (Zielony) */
+
 .btn-admin-submit {
     padding: 12px;
     background: #28a745;
@@ -2185,16 +2139,14 @@ body {
     background: #218838;
 }
 
-/* Odstęp między sekcjami w adminie */
+
 .mb-40 {
     margin-bottom: 40px;
 }
 
-/* =========================================
-   PANEL ADMINISTRATORA - DASHBOARD (KOKPIT)
-   ========================================= */
 
-/* --- Hero (Nagłówek powitalny) --- */
+
+
 .admin-hero {
     background-color: #343a40;
     color: white;
@@ -2218,7 +2170,7 @@ body {
     font-size: 0.9em;
 }
 
-/* --- Siatka Kart (Grid) --- */
+
 .admin-dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -2226,11 +2178,11 @@ body {
     padding: 0 20px;
 }
 
-/* --- Karty nawigacyjne --- */
+
 .admin-card-link {
     text-decoration: none;
     color: inherit;
-    display: block; /* Ważne, aby link obejmował całą kartę */
+    display: block; 
 }
 
 .admin-card {
@@ -2242,10 +2194,10 @@ body {
     text-align: center;
 }
 
-/* Efekt hover (zamiast onmouseover w HTML) */
+
 .admin-card:hover {
     background-color: #e2e6ea;
-    transform: translateY(-5px); /* Delikatne uniesienie karty */
+    transform: translateY(-5px); 
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
@@ -2259,16 +2211,53 @@ body {
     color: #666;
 }
 
-/* =========================================
-   PANEL ADMINISTRATORA - LOTNISKA (Specyficzne)
-   ========================================= */
 
-/* Pomocnicza klasa wymuszająca duże litery (dla kodu IATA) */
+
+
 .input-uppercase {
     text-transform: uppercase;
 }
 
-/* Wiersz tabeli - pogrubienie dla kluczowych danych (np. kod IATA) */
+
 .font-bold {
     font-weight: bold;
 }
+
+.col-action .btn-reserve {
+    width: 100%;
+    white-space: nowrap;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.col-action .btn-reserve:hover {
+    background-color: #0056b3;
+}
+
+
+.btn-cancel {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #dc3545; 
+    border: 1px solid #dc3545; 
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #dc3545;
+    color: white; 
+}
+
+
+
+

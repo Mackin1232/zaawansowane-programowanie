@@ -44,7 +44,7 @@
 
                         <td class="text-center">
                             {% if u.role != 'admin' %}
-                                <a href="/admin/users/delete/{{ u.id }}" class="btn-delete" onclick="return confirm('Czy na pewno chcesz usunąć użytkownika {{ u.username }}?')">
+                                <a href="/admin/users/delete/{{ u.id }}" class="btn-delete">
                                    Usuń
                                 </a>
                             {% else %}

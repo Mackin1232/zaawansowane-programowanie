@@ -20,6 +20,7 @@
                         <th>Data przylotu</th>
                         <th>Trasa</th>
                         <th>Status</th>
+                        <th style="text-align: center;">Akcja</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,13 @@
                                 Zarezerwowany
                             </span>
                         </td>
+
+                        <td style="text-align: center;">
+                            <a href="/rezerwacje/delete/{{ booking.bookingId }}"
+                               class="btn-cancel">
+                                Anuluj rezerwację
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -56,7 +64,7 @@
             <div class="empty-state">
                 <h3 class="empty-title">Brak rezerwacji ✈️</h3>
                 <p class="empty-text">Nie masz jeszcze żadnych zaplanowanych lotów.</p>
-                <a href="/" class="btn-primary">Znajdź lot</a>
+                <a href="/kraje" class="btn-primary">Znajdź lot</a>
             </div>
         {% endif %}
     </div>

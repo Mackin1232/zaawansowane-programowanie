@@ -440,3 +440,32 @@ def terms():
         user = User.query.get(session['user_id'])
 
     return render_template("regulamin.html", user=user)
+
+# W pliku views.py
+
+@views.route("/rezerwacje/delete/<int:booking_id>")
+def delete_reservation(booking_id):
+    # 1. Sprawdzamy logowanie
+    if 'user_id' not in session:
+        flash("Musisz być zalogowany.", "error")
+        return redirect(url_for('views.login'))
+
+    # 2. Pobieramy rezerwację
+    booking = Booking.query.get_or_404(booking_id)
+
+    # 3. ZABEZPIECZENIE: Czy ta rezerwacja należy do obecnego użytkownika?
+    # Konwertujemy na string, bo w modelu userId to String, a w sesji może być różnie
+    if str(booking.userId) != str(session['user_id']):
+        flash("Nie masz uprawnień do usunięcia tej rezerwacji!", "error")
+        return redirect(url_for('views.my_reservations'))
+
+    # 4. Usuwanie
+    try:
+        db.session.delete(booking)
+        db.session.commit()
+        flash("Rezerwacja została anulowana.", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash("Wystąpił błąd podczas anulowania rezerwacji.", "error")
+
+    return redirect(url_for('views.my_reservations'))
