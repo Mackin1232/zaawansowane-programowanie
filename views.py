@@ -117,13 +117,36 @@ def search():
         query = query.filter(Flight.departureDate.like(f"{date}%"))
 
     results = query.all()
+    available_locations, available_airports, departure_times, arrival_times = [], [], [], []
+
+    # Dla każdego lotu filtrowanie po obługiwanych lokacjach i lotniskach
+    for flight in results:
+        all_locations=Location.query.filter_by(airport=flight.arrivalIata).all()
+        all_airports=Airport.query.filter_by(iata=flight.departureIata).all()
+        if len(all_locations)!=0 and len(all_airports)!=0:
+            available_locations.append(all_locations[0])
+            available_airports.append(all_airports[0])
+            departure_times.append(flight.departureDate)
+            arrival_times.append(flight.arrivalDate)
+
+    available_flights = []
+    # Zwracamy liste rzeczy do wyświetlenia
+    for x in range(len(available_locations)):
+        available_flights.append([fix_text(available_airports[x].name),
+                                  available_airports[x].iata,
+                                  available_locations[x].airport,
+                                  fix_text(available_locations[x].city),
+                                  fix_text(available_locations[x].country),
+                                  departure_times[x],
+                                  arrival_times[x]
+                                  ])
 
     user = None
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
 
     return render_template("results.html",
-                           flights=results,
+                           flights=available_flights,
                            user=user,
                            search_origin=origin_iata,
                            search_dest=destination_obj)
@@ -310,6 +333,16 @@ def admin_locations():
         return redirect(url_for('views.admin_locations'))
 
     locations = Location.query.all()
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_locations = []
+    for location in locations:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_locations.append(location)
+    locations = list(fixed_locations)
+
     return render_template("admin_locations.html", locations=locations, user=current_user)
 
 
