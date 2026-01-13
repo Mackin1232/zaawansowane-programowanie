@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="origin">
                     <span class="search-label-text">Lotnisko wylotu</span>
-                    <select id="origin" name="origin_iata" required>
+                    <select id="origin" name="origin_iata" ><!--required>-->
                         <option value="" disabled selected>Wybierz lotnisko</option>
                         {% for airport in origins %}
                             <option value="{{ airport.iata }}">{{ airport.name }} ({{ airport.iata }})</option>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="destination">
                     <span class="search-label-text">Cel podróży</span>
-                    <select id="destination" name="destination_id" required>
+                    <select id="destination" name="destination_id" ><!--required>-->
                         <option value="" disabled selected>Wybierz cel</option>
                         {% for loc in destinations %}
                             <option value="{{ loc.id }}">{{ loc.city }} ({{ loc.country }})</option>
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="departure">
                     <span class="search-label-text">Data wylotu</span>
-                    <select id="departure" name="date" required>
+                    <select id="departure" name="date" ><!--required>-->
                         <option value="" disabled selected>Wybierz datę</option>
                         {% for date in dates %}
                             <option value="{{ date }}">{{ date }}</option>
