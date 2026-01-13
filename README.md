@@ -13,3 +13,5 @@ Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
 [12.01.2026] Dodałem frontend i dodałem troche rzeczy do views.py aby przetestować czy wszystko działa. Trzeba jeszcze dodać funkcjonalności do pola wyszukiwania aby działało i aby pokazywało prawidłowe dane z bazy. Jeśli zauważycie, że coś nie działa, trzeba będzie coś zmienić w wyglądzie albo dodać jakieś podstrony to można pisać. - Paweł
 
 [13.01.2026] W branchu backend-kuba będe pracował nad wyszukiwaniem, filtrowaniem i testowaniem i dopracowaniem ostatecznej wersji strony
+
+[13.01.2026] Dodałem wyszukiwanie, filtrowanie i kilka małych poprawek. Nie jestem pewny czy w zakładce Kraje ma być dokładna kopia wyszukiwania z indexu, więc na razie jej nie tykałem, jutro możemy się dogadać jaki jest z tym plan. Jutro jeszcze potestuje stronę i w razie czego naniosę poprawki. W razie pytań piszcie - Kuba
