@@ -118,27 +118,30 @@ def search():
 
     results = query.all()
     available_locations, available_airports, departure_times, arrival_times = [], [], [], []
+    id_flights = []
 
     # Dla każdego lotu filtrowanie po obługiwanych lokacjach i lotniskach
     for flight in results:
-        all_locations=Location.query.filter_by(airport=flight.arrivalIata).all()
-        all_airports=Airport.query.filter_by(iata=flight.departureIata).all()
-        if len(all_locations)!=0 and len(all_airports)!=0:
+        all_locations = Location.query.filter_by(airport=flight.arrivalIata).all()
+        all_airports = Airport.query.filter_by(iata=flight.departureIata).all()
+        if len(all_locations) != 0 and len(all_airports)!=0:
             available_locations.append(all_locations[0])
             available_airports.append(all_airports[0])
             departure_times.append(flight.departureDate)
             arrival_times.append(flight.arrivalDate)
+            id_flights.append(flight.flightId)
 
     available_flights = []
     # Zwracamy liste rzeczy do wyświetlenia
     for x in range(len(available_locations)):
-        available_flights.append([fix_text(available_airports[x].name),
-                                  available_airports[x].iata,
-                                  available_locations[x].airport,
-                                  fix_text(available_locations[x].city),
-                                  fix_text(available_locations[x].country),
-                                  departure_times[x],
-                                  arrival_times[x]
+        available_flights.append([fix_text(available_airports[x].name),  # Nazwa lotniska startowego 0
+                                  available_airports[x].iata,  # Iata startowego 1
+                                  available_locations[x].airport,  # Iata docelowego 2
+                                  fix_text(available_locations[x].city),  # Nazwa miasta docelowego 3
+                                  fix_text(available_locations[x].country),  # Nazwa kraju docelowego 4
+                                  departure_times[x],  # Czas odlotu 5
+                                  arrival_times[x],  # Czas przylotu 6
+                                  id_flights[x] # Id lotu 7
                                   ])
 
     user = None
