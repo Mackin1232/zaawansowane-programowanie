@@ -375,6 +375,11 @@ def city_flights(id):
     # Pobieramy loty (w bazie departureDate i arrivalDate to pełne napisy "YYYY-MM-DD HH:MM")
     flights = Flight.query.filter_by(arrivalIata=location.airport).all()
 
+    # Naprawa specjalnych znaków do utf-8
+    location.name = fix_text(location.name)
+    location.country = fix_text(location.country)
+    location.city = fix_text(location.city)
+
     user = None
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
