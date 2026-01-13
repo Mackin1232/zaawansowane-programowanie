@@ -4,6 +4,7 @@ import bcrypt
 import re
 from functools import wraps
 from datetime import datetime, timedelta # <--- To jest kluczowe
+from ftfy import fix_text
 
 views = Blueprint(__name__, "views")
 
@@ -49,6 +50,15 @@ def home():
 
     # Tworzymy listę unikalnych celów podróży
     destinations = list(unique_destinations.values())
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_destinations = []
+    for location in destinations:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_destinations.append(location)
+    destinations = list(fixed_destinations)
 
     # 2. Pobieramy lotniska wylotu (Origins) - te, z których są loty
     existing_origins_query = db.session.query(Flight.departureIata).distinct().all()
@@ -136,6 +146,15 @@ def kraje():
         origins = Airport.query.filter(Airport.iata.in_(origin_iatas)).all()
     else:
         origins = []
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_locations_list = []
+    for location in locations_list:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_locations_list.append(location)
+    locations_list = list(fixed_locations_list)
 
     user = None
     if 'user_id' in session:
