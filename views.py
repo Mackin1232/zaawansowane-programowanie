@@ -4,6 +4,7 @@ import bcrypt
 import re
 from functools import wraps
 from datetime import datetime, timedelta # <--- To jest kluczowe
+from ftfy import fix_text
 
 views = Blueprint(__name__, "views")
 
@@ -49,6 +50,15 @@ def home():
 
     # Tworzymy listę unikalnych celów podróży
     destinations = list(unique_destinations.values())
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_destinations = []
+    for location in destinations:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_destinations.append(location)
+    destinations = list(fixed_destinations)
 
     # 2. Pobieramy lotniska wylotu (Origins) - te, z których są loty
     existing_origins_query = db.session.query(Flight.departureIata).distinct().all()
@@ -107,13 +117,39 @@ def search():
         query = query.filter(Flight.departureDate.like(f"{date}%"))
 
     results = query.all()
+    available_locations, available_airports, departure_times, arrival_times = [], [], [], []
+    id_flights = []
+
+    # Dla każdego lotu filtrowanie po obługiwanych lokacjach i lotniskach
+    for flight in results:
+        all_locations = Location.query.filter_by(airport=flight.arrivalIata).all()
+        all_airports = Airport.query.filter_by(iata=flight.departureIata).all()
+        if len(all_locations) != 0 and len(all_airports)!=0:
+            available_locations.append(all_locations[0])
+            available_airports.append(all_airports[0])
+            departure_times.append(flight.departureDate)
+            arrival_times.append(flight.arrivalDate)
+            id_flights.append(flight.flightId)
+
+    available_flights = []
+    # Zwracamy liste rzeczy do wyświetlenia
+    for x in range(len(available_locations)):
+        available_flights.append([fix_text(available_airports[x].name),  # Nazwa lotniska startowego 0
+                                  available_airports[x].iata,  # Iata startowego 1
+                                  available_locations[x].airport,  # Iata docelowego 2
+                                  fix_text(available_locations[x].city),  # Nazwa miasta docelowego 3
+                                  fix_text(available_locations[x].country),  # Nazwa kraju docelowego 4
+                                  departure_times[x],  # Czas odlotu 5
+                                  arrival_times[x],  # Czas przylotu 6
+                                  id_flights[x] # Id lotu 7
+                                  ])
 
     user = None
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
 
     return render_template("results.html",
-                           flights=results,
+                           flights=available_flights,
                            user=user,
                            search_origin=origin_iata,
                            search_dest=destination_obj)
@@ -136,6 +172,15 @@ def kraje():
         origins = Airport.query.filter(Airport.iata.in_(origin_iatas)).all()
     else:
         origins = []
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_locations_list = []
+    for location in locations_list:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_locations_list.append(location)
+    locations_list = list(fixed_locations_list)
 
     user = None
     if 'user_id' in session:
@@ -291,6 +336,16 @@ def admin_locations():
         return redirect(url_for('views.admin_locations'))
 
     locations = Location.query.all()
+
+    # Naprawa specjalnych znaków do utf-8
+    fixed_locations = []
+    for location in locations:
+        location.name = fix_text(location.name)
+        location.country = fix_text(location.country)
+        location.city = fix_text(location.city)
+        fixed_locations.append(location)
+    locations = list(fixed_locations)
+
     return render_template("admin_locations.html", locations=locations, user=current_user)
 
 
@@ -355,6 +410,11 @@ def city_flights(id):
     location = Location.query.get_or_404(id)
     # Pobieramy loty (w bazie departureDate i arrivalDate to pełne napisy "YYYY-MM-DD HH:MM")
     flights = Flight.query.filter_by(arrivalIata=location.airport).all()
+
+    # Naprawa specjalnych znaków do utf-8
+    location.name = fix_text(location.name)
+    location.country = fix_text(location.country)
+    location.city = fix_text(location.city)
 
     user = None
     if 'user_id' in session:

@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}Dostępne loty{% endblock %}
+
+{% block main %}
+<div class="container flights-container">
+
+    <div class="flights-header">
+        <div>
+            <h1 class="flights-title">Znalezione loty: </h1>
+
+        </div>
+
+        <a href="/" class="btn-back">
+            &larr; Strona główna
+        </a>
+    </div>
+
+    <div class="flights-content">
+        {% if flights %}
+            <table class="flights-table">
+                <thead>
+                    <tr>
+                        <th>Lotnisko startowe</th>
+                        <th class="cell-center">Trasa</th>
+                        <th class="cell-center">Miasto</th>
+                        <th class="cell-center">Czas wylotu</th>
+                        <th class="cell-center">Czas przylotu</th>
+                        <th style="text-align: right;">Cena</th>
+                        <th class="col-action">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for flight in flights %}
+                    <tr>
+                        <td>
+                            <div>
+                                {{ flight[0] }}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="route-wrapper" style="text-align:center;">
+                                <span style="font-weight: bold;">{{ flight[1] }}</span>
+                                <span style="color:gray; padding: 0 5px;">↓</span>
+                                <span style="font-weight: bold;">{{ flight[2] }}</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div>
+                                <span>{{ flight[3] }}</span>
+                                <span>({{ flight[4] }})</span>
+                            </div>
+                        </td>
+
+                        <td class="cell-center cell-time">
+                            {{ flight[5] }}
+                        </td>
+
+                        <td class="cell-center cell-time">
+                            {{ flight[6] }}
+                        </td>
+
+                        <td class="cell-price">
+                            {{ flight.price }} PLN
+                        </td>
+
+                        <td class="col-action">
+                            {% if user %}
+                                <form action="/reserve/{{ flight[7] }}" method="POST" class="reserve-form">
+                                    <button type="submit"
+                                            class="btn-reserve">
+                                        Zarezerwuj
+                                    </button>
+                                </form>
+                            {% else %}
+                                <a href="/login" class="btn-login-alert">
+                                    Zaloguj się aby zarezerwować
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty-state">
+                <h3 class="empty-title">Brak zaplanowanych lotów ✈️</h3>
+                <p class="empty-text">Niestety, aktualnie nie mamy lotów według podanych kryteriów.</p>
+                <a href="/" class="link-primary">Wybierz inny kierunek</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
