@@ -173,6 +173,11 @@ def kraje():
     else:
         origins = []
 
+    # Pobieramy dostępne daty (bez godzin)
+    raw_dates = db.session.query(Flight.departureDate).all()
+    # Spłaszczamy listę, ucinamy godzinę (split) i sortujemy unikalne daty
+    available_dates = sorted(list(set([d[0].split(' ')[0] for d in raw_dates])))
+
     # Naprawa specjalnych znaków do utf-8
     fixed_locations_list = []
     for location in locations_list:
@@ -188,6 +193,7 @@ def kraje():
 
     return render_template("kraje.html",
                            locations=locations_list,
+                           dates=available_dates,
                            origins=origins,
                            destinations=locations_list,
                            user=user)
