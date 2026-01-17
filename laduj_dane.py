@@ -38,7 +38,7 @@ def add_booking(data: newBooking): # nieużywane, ale przyda się w przyszłośc
 
 def load_data(app):
     with app.app_context():
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
         
         # przykładowi użytkownicy

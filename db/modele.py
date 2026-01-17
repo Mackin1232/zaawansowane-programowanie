@@ -58,7 +58,7 @@ class Location(db.Model):
     city = db.Column(db.String, nullable=False)
     airport = db.Column(db.String, nullable=False) # kod IATA najbliższego lotniska (powinno się zgadzać z API)
     desc = db.Column(db.String, nullable=False) #  opis lokacji (do wrzucenia na stronę?)
-    cena = db.Column(db.Integer, nullable=False) # cena lotu z Polski do lokacji
+    cena = db.Column(db.Integer, nullable=False, default=0) # cena lotu z Polski do lokacji
 
     def to_dict(self):
         return {"id": self.id, "name": self.name, "country": self.country, "city": self.city, "airport": self.airport, "desc": self.desc, "cena": self.cena}
