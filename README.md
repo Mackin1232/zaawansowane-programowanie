@@ -18,4 +18,4 @@ Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
 
 [16.01.2026] Naprawiłem wyszukiwanie w podstronie kraje. Jak by coś jeszcze nie działało to piszcie. - Kuba
 
-[17.01.2026] Dodałem cenę lotów do tabeli Locations (jako cena zwykłego lotu z Polski do podanego lotniska). Większy sens miałoby dodanie tego do Flights, ale tak było łatwiej - mniej rekordów do edytowania. Usunąłem także duplikaty z tabeli Flights. Później jeszcze spróbuję dodać więcej rekordów do Locations - Maciek
+[17.01.2026] Dodałem cenę lotów do tabeli Locations (jako cena zwykłego lotu z Polski do podanego lotniska). Większy sens miałoby dodanie tego do Flights, ale tak było łatwiej - mniej rekordów do edytowania. [UWAGA: trzeba również dodać pole do wpisywania ceny w panelu admina] Usunąłem także duplikaty z tabeli Flights. Później jeszcze spróbuję dodać więcej rekordów do Locations - Maciek
