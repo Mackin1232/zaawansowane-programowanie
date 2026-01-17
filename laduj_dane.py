@@ -18,7 +18,7 @@ def add_airports(data: list[newAirport]):
 
 def add_locations(data: list[newLocation]):
     for loc in data:
-        location = Location(name=loc.name,country=loc.country,city=loc.city,airport=loc.airport,desc=loc.desc)
+        location = Location(name=loc.name,country=loc.country,city=loc.city,airport=loc.airport,desc=loc.desc,cena=loc.cena)
         db.session.add(location)
     db.session.commit()
 
@@ -38,7 +38,7 @@ def add_booking(data: newBooking): # nieużywane, ale przyda się w przyszłośc
 
 def load_data(app):
     with app.app_context():
-        #db.drop_all()
+        db.drop_all()
         db.create_all()
         
         # przykładowi użytkownicy
@@ -102,8 +102,18 @@ def load_data(app):
                 flight = Flight.query.filter_by(arrivalIata=dest).first()
                 if flight is None:
                     print(f"Lokacja {lokacja.name} (lotnisko {lokacja.airport}) nie ma odpowiadającego lotu w bazie!")
+            # usuwanie duplikatow z tabeli Flights
+            subquery = (
+                db.session.query(db.func.min(Flight.flightId)).group_by(
+                    Flight.departureIata,
+                    Flight.departureDate,
+                    Flight.arrivalDate,
+                    Flight.arrivalIata
+                ).all()
+            )
+            ids_to_keep = [id_tuple[0] for id_tuple in subquery]
+            db.session.query(Flight).filter(~Flight.flightId.in_(ids_to_keep)).delete(synchronize_session='fetch')
+            db.session.commit()
 
-    
-    
     print("Załadowano dane")
     
