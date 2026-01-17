@@ -3,7 +3,7 @@ from db.modele import db, User, Location, Airport, Flight, Booking
 import bcrypt
 import re
 from functools import wraps
-from datetime import datetime, timedelta # <--- To jest kluczowe
+from datetime import datetime, timedelta  # <--- To jest kluczowe
 from ftfy import fix_text
 
 views = Blueprint(__name__, "views")
@@ -124,7 +124,7 @@ def search():
     for flight in results:
         all_locations = Location.query.filter_by(airport=flight.arrivalIata).all()
         all_airports = Airport.query.filter_by(iata=flight.departureIata).all()
-        if len(all_locations) != 0 and len(all_airports)!=0:
+        if len(all_locations) != 0 and len(all_airports) != 0:
             available_locations.append(all_locations[0])
             available_airports.append(all_airports[0])
             departure_times.append(flight.departureDate)
@@ -141,7 +141,8 @@ def search():
                                   fix_text(available_locations[x].country),  # Nazwa kraju docelowego 4
                                   departure_times[x],  # Czas odlotu 5
                                   arrival_times[x],  # Czas przylotu 6
-                                  id_flights[x] # Id lotu 7
+                                  id_flights[x],  # Id lotu 7
+                                  available_locations[x].cena  # Cena przelotu 8
                                   ])
 
     user = None
@@ -333,8 +334,9 @@ def admin_locations():
         city = request.form.get('city')
         airport = request.form.get('airport')
         desc = request.form.get('desc')
+        cena = request.form.get('cena')
 
-        new_loc = Location(name=name, country=country, city=city, airport=airport, desc=desc)
+        new_loc = Location(name=name, country=country, city=city, airport=airport, desc=desc, cena=cena)
         db.session.add(new_loc)
         db.session.commit()
         # Dynamiczny komunikat
@@ -462,6 +464,7 @@ def my_reservations():
 
 # W pliku views.py
 
+
 @views.route("/reserve/<int:flight_id>", methods=['POST'])
 def reserve_flight(flight_id):
     # 1. Sprawdzamy czy użytkownik jest zalogowany
@@ -482,7 +485,7 @@ def reserve_flight(flight_id):
         userId=str(session['user_id']),
         flightIata=str(flight.flightId),    # <--- TUTAJ JEST KLUCZOWY ELEMENT
         locationId=flight.arrivalIata,      # Kod lotniska docelowego
-        departureDate=flight.departureDate, # Data wylotu
+        departureDate=flight.departureDate,  # Data wylotu
         returnDate=flight.arrivalDate       # Data przylotu
     )
 
@@ -508,6 +511,7 @@ def terms():
     return render_template("regulamin.html", user=user)
 
 # W pliku views.py
+
 
 @views.route("/rezerwacje/delete/<int:booking_id>")
 def delete_reservation(booking_id):
