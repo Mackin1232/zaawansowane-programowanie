@@ -14,7 +14,7 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
 
 # Przepływ danych
 ## Start aplikacji
-- `aplication.py` inicjalizuje Flask, rejestruje blueprint `views`, ładuje konfigurację, inicjalizuje bazę SQLAlchemy i zasila bazę danymi przez load_data() w 'load_data.py' .
+- `aplication.py` inicjalizuje Flask, rejestruje blueprint `views`, ładuje konfigurację, inicjalizuje bazę SQLAlchemy i zasila bazę danymi przez load_data() w 'load_data.py' - po uruchomieniu tego pliku można uzyskać dostęp do strony internetowej
 
 ## Źródła danych
 - Lotniska i lokalizacje są ładowane z plików CSV (`db/base_data/airports.csv`, `db/base_data/locations.csv`).
