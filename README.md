@@ -3,6 +3,7 @@
 Wymagane biblioteki są zawarte w pliku 'requirements.txt'.
 
 Aby zobaczyć stronę należy uruchomić plik 'aplication.py', a następnie w przeglądarce wpisać url http://127.0.0.1:5000/
+!UWAGA! - Uruchamiając `aplication.py` należy mieć jako bieżący katalog folder główny projektu: `zaawansowane-programowane-main`
 
 Osobno uruchamiany plik api_request.py powoduje pobranie z API FlightLabs nadchodzących lotów (z zakresu do 8 godzin naprzód) - dane zapisywane w db/base_data/api_data
 (UWAGA: Do tego pliku potrzebny jest klucz darmowego tieru API FlightLabs, zamieszczony jako API_KEY w pliku api_key.py -> ten plik nie jest zamieszczony na GitHub'ie aby uniknąć wycieku klucza)
