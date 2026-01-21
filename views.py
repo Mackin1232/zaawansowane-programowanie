@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort
-from db.modele import db, User, Location, Airport, Flight, Booking
+from db.models import db, User, Location, Airport, Flight, Booking
 import bcrypt
 import re
 from functools import wraps
@@ -192,7 +192,7 @@ def kraje():
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
 
-    return render_template("kraje.html",
+    return render_template("countries.html",
                            locations=locations_list,
                            dates=available_dates,
                            origins=origins,
@@ -428,7 +428,7 @@ def city_flights(id):
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
 
-    return render_template("loty.html",
+    return render_template("flights.html",
                            location=location,
                            flights=flights,
                            user=user)
@@ -460,7 +460,7 @@ def my_reservations():
             continue
 
     user = User.query.get(session['user_id'])
-    return render_template("rezerwacje.html", bookings=data_to_show, user=user)
+    return render_template("reservations.html", bookings=data_to_show, user=user)
 
 # W pliku views.py
 
@@ -508,7 +508,7 @@ def terms():
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
 
-    return render_template("regulamin.html", user=user)
+    return render_template("terms.html", user=user)
 
 # W pliku views.py
 

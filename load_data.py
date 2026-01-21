@@ -1,4 +1,4 @@
-from db.modele import db, User, newUser, Airport, newAirport, Location, newLocation, Flight, newFlight, Booking, newBooking
+from db.models import db, User, newUser, Airport, newAirport, Location, newLocation, Flight, newFlight, Booking, newBooking
 from pathlib import Path
 import bcrypt
 import csv
