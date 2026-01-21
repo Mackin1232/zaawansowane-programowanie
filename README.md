@@ -42,7 +42,7 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
 3. Użytkownik wybiera opcję wyszukaj, wysyłane jest żądanie do endpointa '/search' z wybranymi parametrami do filtrowania
 4. Parametry filtrowania są pobierane, po czym wysyłane jest żądanie do bazy danych, tabeli 'Flights' z danymi filtrami
 5. Następuje przekierowanie na stronę 'results.html', gdzie wyświetlane są znalezione loty z informacjami dot. lotu oraz przyciskiem 'Zarezerwuj'
-5b. Przycisk 'Zarezerwuj' jest dostępny tylko dla zalogowanych użytkowników - sprawdzane jest, czy w sesji znajduje się poprawny użytkownik
+  - Przycisk 'Zarezerwuj' jest dostępny tylko dla zalogowanych użytkowników - sprawdzane jest, czy w sesji znajduje się poprawny użytkownik
 6. Po kliknięciu 'Zarezerwuj' sprawdzane jest wewnętrzne ID lotu i uruchamiana jest ścieżka '/reserve/<flight_id>'.
 7. Tworzony jest nowy obiekt klasy Booking, zawierający ID użytkownika, ID lotu, ID lokacji docelowej i datę wylotu.
 8. Obiekt jest dodawany do bazy danych SQL Alchemy
