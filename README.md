@@ -1,4 +1,4 @@
-### Strona firmy Travel - usługi wyszukującej nadchodzące loty samolotowe
+# Strona firmy Travel - usługi wyszukującej nadchodzące loty samolotowe
 
 Wymagane biblioteki są zawarte w pliku requirements.txt
 
