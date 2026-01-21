@@ -39,11 +39,11 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
 ## Przykład - rezerwacja lotu
 1. Użytkownik wchodzi na stronę główną
 2. Użytkownik wybiera w wyszukiwarce filtry, po jakich chce szukać lotu (miejsce wylotu, miejsce przylotu, data)
-3. Użytkownik wybiera opcję wyszukaj, wysyłane jest żądanie do endpointa '/search' z wybranymi parametrami do filtrowania
-4. Parametry filtrowania są pobierane, po czym wysyłane jest żądanie do bazy danych (modelu Flight) z danymi filtrami
-5. Następuje przekierowanie na stronę 'results.html', gdzie wyświetlane są znalezione loty z informacjami dot. lotu oraz przyciskiem 'Zarezerwuj'
-  - Przycisk 'Zarezerwuj' jest dostępny tylko dla zalogowanych użytkowników - sprawdzane jest, czy w sesji znajduje się poprawny użytkownik
-6. Po kliknięciu 'Zarezerwuj' sprawdzane jest wewnętrzne ID lotu i uruchamiana jest ścieżka '/reserve/<flight_id>'.
-7. Tworzony jest nowy obiekt klasy Booking, zawierający ID użytkownika, ID lotu, ID lokacji docelowej i datę wylotu.
-8. Obiekt jest dodawany do bazy danych SQL Alchemy
-9. Użytkownik zostaje przekierowany na endpoint '/reservations' (renderujący stronę '/reservations.html'), gdzie może zobaczyć swoje rezerwacje
+3. Użytkownik wyszukuje loty przez `/search` (origin, destination, date).
+4. Backend filtruje rekordy w tabeli/modelu `Flight` i renderuje `results.html` z listą wyników.
+5. Przyciski Zarezerwuj są widoczne tylko dla zalogowanych (sprawdzany user_id w sesji).
+6. Kliknięcie Zarezerwuj wysyła `POST /reserve/<flight_id>`:
+   - pobierany jest lot `Flight` po `flight_id`,
+   - tworzony jest rekord `Booking` (powiązany z użytkownikiem i lotem),
+   - dane są zapisywane w bazie.
+7. Użytkownik jest przekierowany na `/rezerwacje`, gdzie endpoint renderuje `reservations.html` z listą rezerwacji
