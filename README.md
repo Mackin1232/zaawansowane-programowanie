@@ -1,23 +1,27 @@
-Aby odpalić strone należy wykonać flask --app Aplikacja.py run
+Strona usługi wyszukującej nadchodzące loty samolotowe
 
-W static/Styles będą style css strony
+Aby zobaczyć stronę należy uruchomić plik Aplikacja.py, a następnie w przeglądarce wpisać url http://127.0.0.1:5000/
 
-W templates są wszystkie pliki html, proponuję rozbić je na layout gdzie będą elementy znajdujące się na każdej podstronie (tło itp.), natomiast w poszczególnych plikach będą elementy każdej podstrony tak jak jest to w przykładowym indexie
+Uruchomienie pliku api_request.py powoduje pobranie z API FlightLabs nadchodzących lotów (z zakresu do 8 godzin od godziny uruchomienia) - dane zapisywane w db/base_data/api_data
 
-Wszystko inne (pliki py i baza itp.) chyba w ogólnym folderze
+Domyślnie można się zalogować na następujące konta:
 
-Jakbyście mieli jakiekolwiek pytania piszcie na grupie na mess - Kuba
+    user1@gmail.com ; hasło: 123
+    user2@gmail.com ; hasło: 123
+    admin@gmail.com ; hasło: admin123 <- konto admina ze specjalnym panelem do edytowania bazy danych
 
-[30.12.2025] Zrobiłem pierwszą wersję bazy danych, myślę że można już coś z tym kombinować. Dane o lotniskach i lotach są w folderze db/base_data . Jeśli chcecie pobrać nowe dane, najpierw uruchomcie plik api_request.py, a potem główną aplikację (napiszcie na messengerze po kod do api). Przez najbliższe dni dodam lokacje, które będą celem podróży (może też więcej lotnisk). W razię wątpliwości śmiało piszcie pytania. (P.S. - do zobaczenia wartości w pliku .db polecam DB Browser for SQLite) -- Maciek
+Wymagane biblioteki (do zainstalowania poprzez pip):
 
-[12.01.2026] Dodałem frontend i dodałem troche rzeczy do views.py aby przetestować czy wszystko działa. Trzeba jeszcze dodać funkcjonalności do pola wyszukiwania aby działało i aby pokazywało prawidłowe dane z bazy. Jeśli zauważycie, że coś nie działa, trzeba będzie coś zmienić w wyglądzie albo dodać jakieś podstrony to można pisać. - Paweł
+    flask
+    flask-sqlalchemy
+    ftfy
+    pydantic
+    bcrypt
 
-[13.01.2026] W branchu backend-kuba będe pracował nad wyszukiwaniem, filtrowaniem i testowaniem i dopracowaniem ostatecznej wersji strony. - Kuba
+[TODO]
 
-[13.01.2026] Dodałem wyszukiwanie, filtrowanie i kilka małych poprawek. Nie jestem pewny czy w zakładce Kraje ma być dokładna kopia wyszukiwania z indexu, więc na razie jej nie tykałem, jutro możemy się dogadać jaki jest z tym plan. Jutro jeszcze potestuje stronę i w razie czego naniosę poprawki. W razie pytań piszcie. - Kuba
-
-[16.01.2026] Naprawiłem wyszukiwanie w podstronie kraje. Jak by coś jeszcze nie działało to piszcie. - Kuba
-
-[17.01.2026] Dodałem cenę lotów do tabeli Locations (jako cena zwykłego lotu z Polski do podanego lotniska). Większy sens miałoby dodanie tego do Flights, ale tak było łatwiej - mniej rekordów do edytowania. [UWAGA: trzeba również dodać pole do wpisywania ceny w panelu admina - na razie dodane lokacje mają cenę = 0] Usunąłem także duplikaty z tabeli Flights. Później jeszcze spróbuję dodać więcej rekordów do Locations - Maciek
-
-[17.01.2026] Dodałem wyświetlanie ceny dla wyników wyszukiwania, lokacji z podstrony /kraje i dodałem pole cena do panelu admina. Jakby coś jeszce trzeba było naprawić to piszcie - Kuba
+    w README opisać prepływ danych (gdzie użytkownik klika, co jest wysyłane do backendu)
+    komentarze w kodzie (dodać/usunąć?)
+    usunąć nazwy lokacji z Kraje
+    dodać więcej lokacji
+    zmienić Niderlandy na Holandię
