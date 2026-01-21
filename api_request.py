@@ -4,9 +4,7 @@ from api_key import API_KEY
 from db.models import Airport
 from aplication import app
 
-## API_KEY przechowuję w pliku api_key.py na swoim kompie, wolałbym nie wrzucać na gita bo jest ryzyko że wycieknie
-## Jeśli chcecie się tym pobawić to napiszcie do mnie, dam wam klucz -- Maciek
-
+# API_KEY przechowuję w pliku api_key.py na swoim kompie, wolałbym nie wrzucać na gita bo jest ryzyko że wycieknie
 
 with app.app_context():
   lotniska = [a.to_dict() for a in Airport.query.all()]
