@@ -8,9 +8,9 @@ Osobno uruchamiany plik api_request.py powoduje pobranie z API FlightLabs nadcho
 (UWAGA: Do tego pliku potrzebny jest klucz darmowego tieru API FlightLabs, zamieszczony jako API_KEY w pliku api_key.py -> ten plik nie jest zamieszczony na GitHub'ie aby uniknąć wycieku klucza)
 
 Domyślnie można się zalogować na następujące konta (nie wliczając kont utworzonych przy rejestracji):
-    user1@gmail.com ; hasło: 123
-    user2@gmail.com ; hasło: 123
-    admin@gmail.com ; hasło: admin123 <- konto admina ze specjalnym panelem do edytowania bazy danych
+- user1@gmail.com ; hasło: 123
+- user2@gmail.com ; hasło: 123
+- admin@gmail.com ; hasło: admin123 <- konto admina ze specjalnym panelem do edytowania bazy danych
 
 # Przepływ danych
 ## Start aplikacji
