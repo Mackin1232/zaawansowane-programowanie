@@ -3,7 +3,7 @@ from db.models import db, User, Location, Airport, Flight, Booking
 import bcrypt
 import re
 from functools import wraps
-from datetime import datetime, timedelta  # <--- To jest kluczowe
+from datetime import datetime, timedelta 
 from ftfy import fix_text
 
 views = Blueprint(__name__, "views")
@@ -407,12 +407,6 @@ def delete_airport(id):
     return redirect(url_for('views.admin_airports'))
 
 
-# W pliku views.py
-
-# W pliku views.py
-
-# W pliku views.py
-
 @views.route("/kierunek/<int:id>/loty")
 def city_flights(id):
     location = Location.query.get_or_404(id)
@@ -442,7 +436,6 @@ def my_reservations():
         return redirect(url_for('views.login'))
 
     # 1. Pobierz rezerwacje usera (szukamy po stringu userId)
-    # UWAGA: Upewnij się, że masz import Booking na górze pliku!
     user_bookings = Booking.query.filter_by(userId=str(session['user_id'])).all()
 
     # 2. Ręczne łączenie danych
@@ -461,8 +454,6 @@ def my_reservations():
 
     user = User.query.get(session['user_id'])
     return render_template("reservations.html", bookings=data_to_show, user=user)
-
-# W pliku views.py
 
 
 @views.route("/reserve/<int:flight_id>", methods=['POST'])
@@ -509,8 +500,6 @@ def terms():
         user = User.query.get(session['user_id'])
 
     return render_template("terms.html", user=user)
-
-# W pliku views.py
 
 
 @views.route("/rezerwacje/delete/<int:booking_id>")
