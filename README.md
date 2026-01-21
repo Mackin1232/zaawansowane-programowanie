@@ -40,7 +40,7 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
 ## Przykład - rezerwacja lotu
 1. Użytkownik wchodzi na stronę główną
 2. Użytkownik wybiera w wyszukiwarce filtry, po jakich chce szukać lotu (miejsce wylotu, miejsce przylotu, data)
-3. Użytkownik wyszukuje loty przez `/search` (origin, destination, date).
+3. Użytkownik wyszukuje loty przez `/search`.
 4. Backend filtruje rekordy w tabeli/modelu `Flight` i renderuje `results.html` z listą wyników.
 5. Przyciski Zarezerwuj są widoczne tylko dla zalogowanych (sprawdzany user_id w sesji).
 6. Kliknięcie Zarezerwuj wysyła `POST /reserve/<flight_id>`:
