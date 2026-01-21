@@ -21,3 +21,7 @@ Wymagane biblioteki (do zainstalowania poprzez pip):
 - ujednolicić nazwy plików (angielski)
 - w README opisać prepływ danych (gdzie użytkownik klika, co jest wysyłane do backendu)
 - komentarze w kodzie (dodać/usunąć?)
+- usunąć nazwy lokacji z Kraje
+- dodać więcej lokacji
+- zmienić Niderlandy na Holandię
+- 
