@@ -19,7 +19,7 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
 ## Źródła danych
 - Lotniska i lokalizacje są ładowane z plików CSV (`db/base_data/airports.csv`, `db/base_data/locations.csv`).
 - Loty są ładowane z plików JSON w `db/base_data/api_data`. 
-- Opcjonalnie: skrypt `api_request.py` pobiera rozkłady lotów z Airlabs API i zapisuje je do JSON, które później są importowane do bazy przy uruchomieniu aplikacji.
+- Opcjonalnie: skrypt `api_request.py` pobiera rozkłady lotów z API FlightLabs i zapisuje je do plików JSON (db/base_data/api_data), które później są importowane do bazy przy uruchomieniu aplikacji.
 
 ## Logowanie i uwierzytelnianie
 - Niektóre akcje wymagają zalogowania (np. rezerwacja lotu)
