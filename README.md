@@ -11,11 +11,9 @@ Domyślnie można się zalogować na następujące konta (nie wliczając kont ut
     admin@gmail.com ; hasło: admin123 <- konto admina ze specjalnym panelem do edytowania bazy danych
 
 [TODO]
-
-    w README opisać prepływ danych (gdzie użytkownik klika, co jest wysyłane do backendu)
     dodać więcej lokacji (w domu zrobię -- Maciek)
 
-Przepływ danych:
+# Przepływ danych:
 ## Start aplikacji
 - `aplication.py` inicjalizuje Flask, rejestruje blueprint `views`, ładuje konfigurację, inicjalizuje bazę SQLAlchemy i zasila bazę danymi przez load_data() w 'load_data.py' .
 
