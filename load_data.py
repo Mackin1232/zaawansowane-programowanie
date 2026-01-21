@@ -4,7 +4,7 @@ import bcrypt
 import csv
 import json
 
-# metody do endpointow?
+
 def add_user(data: newUser):
     user = User(username=data.username, password=bcrypt.hashpw(data.password.encode(), bcrypt.gensalt()), email=data.email, role=data.role)
     db.session.add(user)
@@ -30,7 +30,7 @@ def add_flights(data: list[newFlight]):
         db.session.add(flight)
     db.session.commit()
 
-def add_booking(data: newBooking): # nieużywane, ale przyda się w przyszłości
+def add_booking(data: newBooking): 
     booking = Booking(bookingId=data.bookingId, userId=data.userId, flightId=data.flightIata, locationId=data.locationId, departureDate=data.departureDate, returnDate=data.returnDate)
     db.session.add(booking)
     db.session.commit()
@@ -61,7 +61,7 @@ def load_data(app):
             for us in users:
                 add_user(data=newUser(**us))
 
-        # lotniska z pliku airports.csv (możecie dodać więcej)
+        # lotniska z pliku airports.csv 
         if Airport.query.count() == 0:
             lotniska_lista = []
             with open("./db/base_data/airports.csv","r", ) as file:
@@ -89,7 +89,6 @@ def load_data(app):
                     loty = json.load(f)
                     for lot in loty:
                         l = {
-                            #"flightIata": lot['flight_iata'],  # czasami wywala błąd jeśli ładujemy kod iata lotu. TODO: naprawić?
                             "departureIata": lot['dep_iata'],
                             "departureDate": lot['dep_time'],
                             "arrivalIata": lot['arr_iata'],
@@ -97,7 +96,7 @@ def load_data(app):
                         loty_lista.append(newFlight(**l))
             add_flights(data=loty_lista)
     
-            for lokacja in lokacje_lista: # do debugowania, można potem usunąć
+            for lokacja in lokacje_lista:
                 dest = lokacja.airport
                 flight = Flight.query.filter_by(arrivalIata=dest).first()
                 if flight is None:
