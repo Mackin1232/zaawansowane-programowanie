@@ -15,3 +15,9 @@ Wymagane biblioteki (do zainstalowania poprzez pip):
 - ftfy
 - pydantic
 - bcrypt
+
+[TODO]
+- plik .db przenieść do folderu db
+- ujednolicić nazwy plików (angielski)
+- w README opisać prepływ danych (gdzie użytkownik klika, co jest wysyłane do backendu)
+- komentarze w kodzie (dodać/usunąć?)
