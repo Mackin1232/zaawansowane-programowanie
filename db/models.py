@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 # ------------- USER ----------------------
 
-class newUser(BaseModel): # nie wiem czy to wgl potrzebne, może to się przyda jako schema do requestow?
+class newUser(BaseModel): 
     username: str
     password: str
     email: str
@@ -24,7 +24,7 @@ class User(db.Model):
     def to_dict(self):
         return {"id": self.id, "username": self.username, "password": self.password, "email": self.email, "role": self.role}
     
-# -------------------- AIRPORT - lotniska (w Polsce i miejscach, które są celem podróży) --------------------
+# -------------------- AIRPORT - lotniska (w Polsce) --------------------
 
 class newAirport(BaseModel):
     name: str
@@ -40,7 +40,7 @@ class Airport(db.Model):
     def to_dict(self):
         return {"id": self.id, "name": self.name, "iata": self.iata}
 
-# -------------------- LOCATION - hotele, domki itd. ------------------
+# -------------------- LOCATION - zagraniczne cele podrozy ------------------
 
 class newLocation(BaseModel): 
     name: str
@@ -57,7 +57,7 @@ class Location(db.Model):
     country = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     airport = db.Column(db.String, nullable=False) # kod IATA najbliższego lotniska (powinno się zgadzać z API)
-    desc = db.Column(db.String, nullable=False) #  opis lokacji (do wrzucenia na stronę?)
+    desc = db.Column(db.String, nullable=False) #  opis lokacji 
     cena = db.Column(db.Integer, nullable=False, default=0) # cena lotu z Polski do lokacji
 
     def to_dict(self):
@@ -74,7 +74,7 @@ class newBooking(BaseModel):
     departureDate: str
     returnDate: str
 
-class Booking(db.Model): # TODO: dodać relacje z innymi tabelami
+class Booking(db.Model): 
     __tablename__="bookings"
     bookingId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userId = db.Column(db.String, nullable=False)
@@ -87,7 +87,7 @@ class Booking(db.Model): # TODO: dodać relacje z innymi tabelami
         return {"bookingId": self.bookingId, "userId": self.userId, "flightIata": self.flightIata, "locationId": self.locationId, "departureDate": self.departureDate, "returnDate": self.returnDate}
 
 
-# ------------------------- FLIGHT - loty (z API, można zasymulować dane [ np. dane z API powielić wiele razy dla różnych dat ] ) ---------------
+# ------------------------- FLIGHT - loty ---------------
 
 class newFlight(BaseModel):
     #flightIata: str
