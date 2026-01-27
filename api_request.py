@@ -4,7 +4,7 @@ from api_key import API_KEY
 from db.models import Airport
 from aplication import app
 
-# API_KEY przechowuję w pliku api_key.py na swoim kompie, wolałbym nie wrzucać na gita bo jest ryzyko że wycieknie
+# API_KEY to aktywny klucz do darmowego API AirLabs przechowywany w pliku api_key.py - nie ma go na githubie dla celów bezpieczeństwa
 
 with app.app_context():
   lotniska = [a.to_dict() for a in Airport.query.all()]
